@@ -32,6 +32,7 @@ docker compose up -d --build
 ```
 
 
+
 "  # Путь к файлу с алертами
       
 Auto-start (Linux)
@@ -45,7 +46,16 @@ sudo systemctl enable --now alertmanager-telegramm.service
 ============================================================
 Send test alert:
 
+Cách 1: Sử dụng lệnh để tắt bật rabbitmq 
+
+```
+docker compose scale rabbitmq=0
+```
+
+Cách 2: tets bằng curl 
+
 curl -X POST http://localhost:9093/api/v1/alerts -d '[{"labels":{"alertname":"TEST"}}]'
+
 
 Check Telegram for notification
 
