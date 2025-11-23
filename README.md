@@ -24,6 +24,7 @@ CHAT_ID=your_chat_id
 
 Hoặc chỉ cần sửa trong file python chứa code của webhook 
 
+Sửa webhook ở dòng `api_url` của slack ở file `alertmanager.yml` 
 
 Build image 
 
@@ -62,7 +63,7 @@ docker compose scale rabbitmq=1
 
 Cách 2: tets bằng curl 
 
-curl -X POST http://localhost:9093/api/v1/alerts -d '[{"labels":{"alertname":"TEST"}}]'
+curl -X POST http://localhost:9093/api/v2/alerts  -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"TEST"}}]'
 
 
 Check Telegram for notification
