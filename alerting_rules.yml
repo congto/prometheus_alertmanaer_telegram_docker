@@ -1,0 +1,18 @@
+# alert rules (to be used by AlertManager)
+groups:
+  - name: alerting_rules
+    # rules evaluation period
+    interval: 1s
+    rules:
+      # rabbitmq metrics simple rule
+      - alert: rabbitmqDown
+        # rabbitmq is not running
+        expr: rabbitmq_up == 0
+        # during 10 seconds
+        for: 10s
+        labels:
+          # sounds important
+          severity: critical
+        annotations:
+          summary: "RabbitMQ is Down"
+          description: "RabbitMQ is so dead"

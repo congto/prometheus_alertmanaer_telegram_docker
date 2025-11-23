@@ -1,0 +1,27 @@
+# set a label to this prometheus instance
+global:
+  external_labels:
+      monitor: 'tranque-monitor'
+
+# connect to AlertManager
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 'alertmanager:9093'
+
+# include alert rules (to be used by AlertManager)
+rule_files:
+  - "/etc/prometheus/alerting_rules.yml"
+
+# read metrics from several sources
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'rabbitmq-test'
+    scrape_interval: 1s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['rabbitmq-exporter:9090']

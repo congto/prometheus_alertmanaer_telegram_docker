@@ -2,11 +2,35 @@ global:
   resolve_timeout: 1m
 
 route:
-  receiver: 'telegram-alerts'
-  repeat_interval: 1h
+  group_by: ['instance', 'severity']
+  # wait to send notification
+  group_wait: 1s
+  group_interval: 2m
+  # wait to resend notification
+  repeat_interval: 5m
+  routes:
+  - match:
+      # alert name defined in alerting_rules.yml
+      alertname: rabbitmqDown
+  receiver: 'tranque-slack-hook'
 
 receivers:
-  - name: 'telegram-alerts'
-    webhook_configs:
-      - url: 'http://telegram-webhook:8080/alert'
-        send_resolved: true
+# slack hook configuration
+- name: 'tranque-slack-hook'
+  # telegram
+  slack_configs:
+  - api_url: "https://hooks.slack.com/services/T02QZ38QK/B0JL8KSJE/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    channel: '#ctocanhbao'
+    send_resolved: true
+    title: "{{ .CommonAnnotations.summary }}"
+    title_link: ""
+    text: "RabbitMQ server got down for 10 seconds"
+  # telegram
+  # telegram_configs:
+    # - chat_id: -yyyyyyyyyyyyyy
+      # bot_token: 'xxxxxxxxxxxxxxxxxxxxxxxxx'
+      # send_resolved: true
+  webhook_configs:
+    # - url: 'http://telegram-webhook:8080/alert'
+    - url: 'http://172.16.91.30:8080/alert'
+      send_resolved: true

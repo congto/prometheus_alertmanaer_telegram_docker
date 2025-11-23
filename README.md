@@ -8,12 +8,14 @@ docker-compose up -d --build
 🔧Configuration
 ===========================================================
 Environment Variables
-Create .env file:
+Tạo file  .env chứa nội dung :
 
-***!!! OR JUST ADD YOUR TOKEN AND CHAT INTO py FILE !!!***
 
-TELEGRAM_TOKEN=your_bot_token  
+BOT_TOKEN=your_bot_token  
 CHAT_ID=your_chat_id  
+
+
+Hoặc chỉ cần sửa trong file python chứa code của webhook 
 
 Docker Compose
 Manages two services:
