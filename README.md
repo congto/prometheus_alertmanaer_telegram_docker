@@ -75,4 +75,16 @@ No Telegram alerts        -        **!!! Verify bot token/chat_id !!!** = .env i
 
 Alertmanager unreachable        -        Check Docker network connectivity
 
-Service won't start        -        Inspect logs: journalctl -u alertmanager-telegramm.service OR docker logs telegram-webhook OR docker logs alertmanager
+Service won't start        -        Inspect logs: 
+
+```
+journalctl -u alertmanager-telegramm.service 
+
+#OR 
+
+docker logs telegram-webhook 
+
+#OR
+
+docker logs alertmanager
+```
