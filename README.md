@@ -48,9 +48,17 @@ Send test alert:
 
 Cách 1: Sử dụng lệnh để tắt bật rabbitmq 
 
+Stop rabbitmq 
 ```
 docker compose scale rabbitmq=0
 ```
+
+
+Start rabbitmq 
+```
+docker compose scale rabbitmq=1
+```
+
 
 Cách 2: tets bằng curl 
 
