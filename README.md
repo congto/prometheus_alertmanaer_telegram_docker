@@ -88,3 +88,24 @@ docker logs telegram-webhook
 
 docker logs alertmanager
 ```
+
+# Build image telegram-webhook
+
+- Build image 
+
+```
+
+git clone https://github.com/congto/prom_alert_tele_docker.git
+
+cd /root/prom_alert_tele_docker/telegram-webhook/
+
+docker build -t telegram-webhook:latest .
+```
+- Chạy chương trình `telegram-webhook` 
+
+```
+docker run -d \
+  --name telegram-webhook \
+  -p 8080:8080 \
+  telegram-webhook:latest
+```
