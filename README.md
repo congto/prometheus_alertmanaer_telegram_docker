@@ -28,7 +28,7 @@ Hoặc chỉ cần sửa trong file python chứa code của webhook
 Build image 
 
 ```
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 
